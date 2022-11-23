@@ -19,14 +19,24 @@ import { Typography } from "@mui/material";
  * 
  * 2.1 .- Los sub-arrays 1,2,4 y 5 se transforman asi:
  * 
+ *                        puntuacion
+ *                         1 2 3 4
+ * posicion          1     4 4 2 1
+ *                   2     1 2 3 4 
+ *                   3     1 2 3 4
+ *             
+ * sub array 3
+ *                        puntuacion              
+ *                         1 2 3 4
+ * posicion          1     1 2 3 4
+ *                   2     1 2 3 4
+ *                   3     4 3 2 1
  *
-           * Array 3
-           * puntuacion    1 2 3 4
-           * posicion   0  1 2 3 4
-           *            1  1 2 3 4
-           *            2  4 3 2 1
-           *
-           * resultado 1 1 4 -> ok
+ * Resultado del ejemplo:
+ * subarray 1: 2 3 2
+ * subarray 2: 4 4 4
+ * subarray 3: 
+ * resultado 1 1 4 -> ok
  */
 export default function Radar() {
 const [array, setArray] = useState([3,3,2,1,4,4,1,4,4,1,1,3,3,2,4])
