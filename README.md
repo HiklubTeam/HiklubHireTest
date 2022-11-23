@@ -12,4 +12,4 @@ Hi everyone this rep is a set of questions and test to hire you. This repo is no
 ## How send your solution
 
 - Create a codesandbox
-- text my telegram id @patriciarules
+- text with link my telegram id `@patriciarules`
