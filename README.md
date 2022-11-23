@@ -1,29 +1,28 @@
 # HiklubHireTest
-Hiklub dev tests for hiring contractors
+Pruebas de desarrollo de Hiklub para contratar freelances
  
-Hi everyone this rep is a set of questions and test to hire you. This repo is not a contest and is not an obligation for you to do.
+Hola a todos, este repositorio es un conjunto de pruebas para contratarlos. Esto no es un concurso y no es una obligación hacerlo.
 
+## Resumen
 
-## Summary
+- Desarrolla componentes React / next usando la librería material ui
+- Comprender los conceptos de análisis e interpretación datos trabajando con gráficos.
 
-- Develop some React / next components using material ui library
-- Understanding data handling concepts basic data analysis and interpretation working with charts. 
+## Cómo enviar tu solución
 
-## How send your solution
+- Crea un codesandbox con la solución
+- Envía un mensaje privado con el enlace a este id `@patriciarules` de Telegram
 
-- Create a codesandbox
-- text with link my telegram id `@patriciarules`
-
-## Tests
+## Pruebas a desarrollar
 
 ### Quiz
 
-- Create a quiz component using questions given, every question has 4 answers (1 to 4). The user can leave every single question and user can back on that. The user cant back. The quiz must be optimized for seo
+- Crea un componente usando las preguntas dadas, cada pregunta tiene 4 posibles respuestas (1 a 4). El usuario puede abandonar el quiz en cualquier momento y siempre que quiera regresar debe retormar en la última pregunta donde abandonó. El usuario no puede retroceder sobre preguntas ya respondidas. El cuestionario debe estar optimizado para SEO.
 
 ### Chart
 
-- With result answers you got an array 15 lenght. Using transformation algorithm you must create radar chart. More info in file.
+-  Dispones de un array con 15 valores comprendidos del 1 al 4, también dispones de un algoritmo de transformación, el cual lo encontrarás en el código, con estos datos: crear un gráfico de tipo radar con 5 dimensiones la leyenda final debe estar en una escala porcentual. Por ejemplo, 3 equivale a 0% y 12 al 100%
 
 ### Extra
 
-- The quiz is 15 lenght once finalize last question radar with transform algorithm applied must appear on screen (dialog or popup)
+- El cuestionario tiene una duración de 15 preguntas, una vez finalice la última pregunta, el radar con el algoritmo de transformación aplicado debe aparecer en la pantalla mediante un diálogo o ventana emergente.
