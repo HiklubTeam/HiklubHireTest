@@ -5,7 +5,7 @@ Hola a todos, este repositorio es un conjunto de pruebas para contratarlos. Esto
 
 ## Resumen
 
-- Desarrolla componentes React / next usando la librería material ui
+- Desarrolla componentes React usando la librería material ui
 - Comprender los conceptos de análisis e interpretación datos trabajando con gráficos.
 
 ## Cómo enviar tu solución
