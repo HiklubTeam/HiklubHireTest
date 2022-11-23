@@ -13,3 +13,17 @@ Hi everyone this rep is a set of questions and test to hire you. This repo is no
 
 - Create a codesandbox
 - text with link my telegram id `@patriciarules`
+
+## Tests
+
+### Quiz
+
+- Create a quiz component using questions given, every question has 4 answers (1 to 4). The user can leave every single question and user can back on that. The user cant back. The quiz must be optimized for seo
+
+### Chart
+
+- With result answers you got an array 15 lenght. Using transformation algorithm you must create radar chart. More info in file.
+
+### Extra
+
+- The quiz is 15 lenght once finalize last question radar with transform algorithm applied must appear on screen (dialog or popup)
