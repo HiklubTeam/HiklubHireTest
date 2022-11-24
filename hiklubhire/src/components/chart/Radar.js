@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Radar } from "react-chartjs-2";
 import { Typography } from "@mui/material";
 
-/**
+/** ToDo:
+ *
  * Sistema de Transformación de las puntuaciones por posiciones
  * Pasos:
- *  1.- El array se divide en 5 sub-arrays de 3 posiciones
- *  2.- las posiciones de cada uno de los bloques se transforman:
+ *  0.- Recibimos un array de de 15 posiciones con valores comprendidos entre 1 y 4
+ *  1.- El array se debe dividir en 5 sub-arrays de tamaño 3
+ *  2.- las posiciones de cada uno de los sub-arrays se transforman:
  *
  * Ejemplo:
  * [3,3,2,1,4,4,1,4,4,1,1,3,3,2,4]

@@ -28,7 +28,9 @@ Hola a todos, este repositorio es un conjunto de pruebas para contratarlos. Esto
 - El cuestionario tiene una duración de 15 preguntas, una vez finalice la última pregunta, el radar con el algoritmo de transformación aplicado debe aparecer en la pantalla mediante un diálogo o ventana emergente.
 
 
-## NPM
+## Instalar Material ui
 
 `npm install @mui/material @emotion/react @emotion/styled --legacy-peer-deps`
 `npm install @mui/icons-material --legacy-peer-deps`
+
+Si tu codesandbox te da problemas para instalar los paquetes y/o ejecutar, puedes hacer un downgrade de react a versión 17
