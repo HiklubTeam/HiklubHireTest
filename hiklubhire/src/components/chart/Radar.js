@@ -1,164 +1,54 @@
-import React, { useState, useEffect, useRef } from "react";
-import {
-  Chart as ChartJS,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import React, { useState } from "react";
 import { Radar } from "react-chartjs-2";
 import { Typography } from "@mui/material";
 
 /**
- * Sistema de Transformación de las puntiaciones por posiciones
+ * Sistema de Transformación de las puntuaciones por posiciones
  * Pasos:
  *  1.- El array se divide en 5 sub-arrays de 3 posiciones
- *  2.- las posiciones de cada uno de los bloques se transforman en
- * 
- * 2.1 .- Los sub-arrays 1,2,4 y 5 se transforman asi:
- * 
+ *  2.- las posiciones de cada uno de los bloques se transforman:
+ *
+ * Ejemplo:
+ * [3,3,2,1,4,4,1,4,4,1,1,3,3,2,4]
+ *
+ * sub-arrays 1,2,3 y 5 se transforman asi:
+ *
  *                        puntuacion
  *                         1 2 3 4
+ *
  * posicion          1     4 4 2 1
- *                   2     1 2 3 4 
+ *                   2     1 2 3 4
  *                   3     1 2 3 4
- *             
- * sub array 3
- *                        puntuacion              
+ *
+ * sub array 4:
+ *                        puntuacion
  *                         1 2 3 4
+ *
  * posicion          1     1 2 3 4
  *                   2     1 2 3 4
  *                   3     4 3 2 1
  *
- * Resultado del ejemplo:
+ *
+ * Resultados del ejemplo:
  * subarray 1: 2 3 2
  * subarray 2: 4 4 4
- * subarray 3: 
- * resultado 1 1 4 -> ok
+ * subarray 3: 4 4 4
+ * subarray 4: 1 1 2
+ * subarray 5: 2 2 4
+ *
+ * 3.- Sumar el resultado de los subarrays
+ *
+ * 4.- Transformar a % porcentaje:
+ *  Hacer regla de tres para que 12 sea el 100%, y que el 3 sea el 0%.
+ *
+ * 5.- pintar el chart radar
+ *
+ * 6.- Las etiquetas deben mostrar el valor + "%""
  */
-export default function Radar() {
-const [array, setArray] = useState([3,3,2,1,4,4,1,4,4,1,1,3,3,2,4])
-const [radar, setRadar] = useState();
-const [isRadar, setIsRadar] = useState(false);
-
-  function calculateRadarData(array) {
-    if (array && affinity.length === 15) {
-      const resultado = chunkArray(affinity, 3);
-      //console.log("arrays resultado", resultado);
-      let contador = 0;
-      var pentaData = [];
-      resultado.forEach((subarray) => {
-        //console.log("arrays", subarray, contador);
-        contador++;
-        if (contador === 3) {
-          let pentaAux = [];
-          subarray.forEach(function (value, i) {
-            //console.log("%d: %s", i, value);
-            if (i === 2) {
-              switch (value) {
-                case 1:
-                  pentaAux.push(4);
-                  break;
-                case 2:
-                  pentaAux.push(3);
-                  break;
-                case 3:
-                  pentaAux.push(2);
-                  break;
-                case 4:
-                  pentaAux.push(1);
-                  break;
-
-                default:
-                  break;
-              }
-            } else {
-              switch (value) {
-                case 1:
-                  pentaAux.push(1);
-                  break;
-                case 2:
-                  pentaAux.push(2);
-                  break;
-                case 3:
-                  pentaAux.push(3);
-                  break;
-                case 4:
-                  pentaAux.push(4);
-                  break;
-
-                default:
-                  break;
-              }
-            }
-          });
-          const reducer = (accumulator, curr) => accumulator + curr;
-          pentaData.push(pentaAux.reduce(reducer));
-          //console.log("pentadata suma", pentaData);
-          
-        } else {
-          let pentaAux = [];
-          subarray.forEach(function (value, i) {
-            //console.log("%d: %s", i, value);
-
-            if (i === 0) {
-              switch (value) {
-                case 1:
-                  pentaAux.push(4);
-                  break;
-                case 2:
-                  pentaAux.push(3);
-                  break;
-                case 3:
-                  pentaAux.push(2);
-                  break;
-                case 4:
-                  pentaAux.push(1);
-                  break;
-
-                default:
-                  break;
-              }
-            } else {
-              switch (value) {
-                case 1:
-                  pentaAux.push(1);
-                  break;
-                case 2:
-                  pentaAux.push(2);
-                  break;
-                case 3:
-                  pentaAux.push(3);
-                  break;
-                case 4:
-                  pentaAux.push(4);
-                  break;
-                default:
-                  break;
-              }
-            }
-          });
-
-          const reducer = (accumulator, curr) => accumulator + curr;
-          pentaData.push(pentaAux.reduce(reducer));
-          //console.log("pentadata suma", pentaData);
-          /**
-           * Array 0, 1 2 y 4
-           * puntuacion    1 2 3 4
-           * posicion   0  4 3 2 1
-           *            1  1 2 3 4
-           *            2  1 2 3 4
-           */
-        }
-      });
-      setRadar(pentaData);
-      setIsRadar(true);
-    } else {
-      setIsRadar(false);
-    }
-  }
+export default function Radar({ arrayReceived }) {
+  const [array, setArray] = useState(arrayReceived);
+  const [radar, setRadar] = useState();
+  const [isRadar, setIsRadar] = useState(false);
 
   const options = {
     responsive: true,
@@ -183,8 +73,8 @@ const [isRadar, setIsRadar] = useState(false);
         angleLines: {
           display: false,
         },
-        suggestedMin: 3,
-        suggestedMax: 12,
+        suggestedMin: 0, // equivale a 3 en la suma
+        suggestedMax: 100, // equivale a 12 en la suma
         ticks: {
           stepSize: 2,
           color: "#93C01F",
@@ -205,13 +95,7 @@ const [isRadar, setIsRadar] = useState(false);
   };
 
   const data = {
-    labels: [
-      "RE",
-      "A",
-      "AM",
-      "Ex",
-      "EM",
-    ],
+    labels: ["RE", "A", "AM", "EX", "EM"],
     datasets: [
       {
         label: "Pon tu nombre aqui",
